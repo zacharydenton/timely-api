@@ -64,52 +64,45 @@ Get current campus events:
 $ curl http://timely-api.herokuapp.com/events
 [
   {
-    "title": "Africa Highlight Week",
-    "description": "Tuck Africa Club invites Dartmouth to AFRICA HIGHLIGHT WEEK<http://cgbg.tuck.dartmouth.edu/mba-enrichment/special-events/africa-highlight-2013>:<br>THE POWER OF ONE BILLION CONSUMERS, APRIL 22-25, 2013; Pre-Event April 17<br><br>[X]<http://cgbg.tuck.dartmouth.edu/mba-enrichment/special-events/africa-highlight-2013>These events will explore the theme of doing business in Africa through two different lenses. First, from the perspective of large, global multinational corporations that are investing in Africa to capitalize on the vast consumer base. Second, from the perspective of African based businesses leveraging their understanding of the market to grow and expand across the continent. [...]",
+    "title": "RWIT Writing Workshop: Tuesday April 16, 6-7pm",
+    "description": "RWIT presents...<br><br>\"Writing with Style and Clarity\" (and Boloco for dinner!)<br>Tuesday, April 16, 6-7pm<br>Berry 183 (the RWIT room, behind KAF)<br><br>Learn how to clarify your writing using some simple techniques in concision--an important skill for every writer!<br><br>Hosted by Katie Williamson '15 and Maura Riley '14<br><br>>> RSVP here<http://www.surveymonkey.com/s/X73GS8Y> to reserve a spot!<br><br>Want more? We've got one more workshop on \"How to Read a Prompt\" on April 23!",
     "date": {
       "start": {
         "year": 2013,
         "month": 3,
-        "day": 22
+        "day": 16
       },
-      "startDate": "2013-04-22T16:00:00.000Z",
-      "end": {
-        "year": 2013,
-        "month": 3,
-        "day": 25
-      },
-      "endDate": "2013-04-25T16:00:00.000Z",
-      "referenceDate": "2013-04-21T20:12:16.000Z",
-      "index": 184,
-      "text": "APRIL 22-25, 2013",
-      "concordance": "... OF ONE BILLION CONSUMERS, APRIL 22-25, 2013; Pre-Event April 17<br><br..."
+      "startDate": "2013-04-16T16:00:00.000Z",
+      "referenceDate": "2013-04-15T02:00:43.000Z",
+      "index": 23,
+      "text": "Tuesday April 16",      "concordance": "RWIT Writing Workshop: Tuesday April 16, 6-7pm"
     },
-    "url": "http://listserv.dartmouth.edu/scripts/wa.exe?A2=CAMPUS-EVENTS;a2107ec.1304c",
-    "location": null
+    "url": "http://listserv.dartmouth.edu/scripts/wa.exe?A2=CAMPUS-EVENTS;45e1a257.1304c",
+    "location": {
+      "lat": 43.70581,
+      "lon": -72.288839
+    }
   },
   [...],
   {
-    "title": "Try Meatless Earth Day @ Foco tomorrow!",
-    "description": "Looking for an easy and rewarding way to celebrate Earth Day tomorrow?<br><br>Try going meatless (or meat reduced)! Dinner at foco will feature info on the environmental benefits of<br>going meatless one day a week, and all of the veg options will be labelled with special placards so you<br>don't even have to try to figure out what is or isn't meat free! [...]",
+    "title": "Reduce greenhouse emissions equal to 1,160 miles?!?",
+    "description": "Looking for an easy way to cut down your green house gas emissions?<br><br>If every household ate plant-based meals one day per week, it could cut down green house gas emissions equivalent to driving 1,160 miles less per year!<br><br>Now image that number multiplied by 1,000: that's how much emissions could be reduced by if Dartmouth undergrads switched to plant based diets every Monday. [...]",
     "date": {
       "start": {
         "year": 2013,
         "month": 3,
-        "day": 22
+        "day": 15
       },
-      "startDate": "2013-04-22T16:00:00.000Z",
-      "referenceDate": "2013-04-21T15:25:52.000Z",
-      "index": 30,
-      "text": "tomorrow",
-      "concordance": "Try Meatless Earth Day @ Foco tomorrow!"
+      "startDate": "2013-04-15T16:00:00.000Z",      "referenceDate": "2013-04-15T01:37:43.000Z",
+      "index": 383,
+      "text": "Monday",
+      "concordance": "...to plant based diets every Monday. [...]"
     },
-    "url": "http://listserv.dartmouth.edu/scripts/wa.exe?A2=CAMPUS-EVENTS;c656a9cf.1304c",
-    "location": 2131787360
+    "url": "http://listserv.dartmouth.edu/scripts/wa.exe?A2=CAMPUS-EVENTS;fec906be.1304c",
+    "location": null
   }
 ]
 ```
-
-`location` is the OSM building ID (if found).
 
   [express]: http://expressjs.com/
   [CoffeeScript]: http://coffeescript.org/
