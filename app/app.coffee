@@ -21,9 +21,10 @@ app.post '/places', (req, res) ->
       lat: req.body.latitude
       lon: req.body.longitude
       format: 'json'
+    json: true
 
-  request.get params, (err, response, body) ->
-    res.send body
+  request.get params, (err, response, json) ->
+    res.jsonp json
 
 app.listen app.get('port'), ->
   console.log "Server started on port #{app.get 'port'} in #{app.settings.env} mode."
