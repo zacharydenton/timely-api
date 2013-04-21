@@ -1,6 +1,9 @@
 express = require 'express'
 request = require 'request'
+
 callbacks = require './callbacks'
+events = require './events'
+
 app = express()
 
 app.configure ->
@@ -25,7 +28,11 @@ app.post '/places', (req, res) ->
     json: true
 
   request.get params, (err, response, json) ->
-    res.jsonp callbacks.place_callback(json)
+    res.jsonp callbacks.placeCallback(json)
+
+app.get '/events', (req, res) ->
+  events.getEvents (data) ->
+    res.jsonp data
 
 app.listen app.get('port'), ->
   console.log "Server started on port #{app.get 'port'} in #{app.settings.env} mode."
