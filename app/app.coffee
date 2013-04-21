@@ -14,6 +14,12 @@ app.configure 'production', ->
   # http://expressjs.com/guide.html#proxies
   app.enable 'trust proxy'
 
+place_callback = (place) ->
+  building = place.address.building or place.address.library
+  
+  message: "Welcome to #{building}."
+  place: place
+
 app.post '/places', (req, res) ->
   params =
     uri: "http://open.mapquestapi.com/nominatim/v1/reverse.php"
@@ -24,7 +30,7 @@ app.post '/places', (req, res) ->
     json: true
 
   request.get params, (err, response, json) ->
-    res.jsonp json
+    res.jsonp place_callback(json)
 
 app.listen app.get('port'), ->
   console.log "Server started on port #{app.get 'port'} in #{app.settings.env} mode."
