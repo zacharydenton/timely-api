@@ -31,7 +31,7 @@ getDDSMenu = (id, sid, fn) ->
     for cat in json.result.cat_list
       result[cat[0]] = []
     for recipe in json.result.recipeitems_list
-      result[recipe[1][0]].push recipe[0]
+      result[recipe[1][0]].push recipe[0].split(/[\(\[]/, 1)[0].replace(/\s+$/, '')
     fn result
 
 getFocoMenu = (fn) ->
