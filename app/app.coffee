@@ -3,6 +3,7 @@ request = require 'request'
 
 callbacks = require './callbacks'
 events = require './events'
+menus = require './menus'
 
 app = express()
 
@@ -32,6 +33,10 @@ app.post '/places', (req, res) ->
 
 app.get '/events', (req, res) ->
   events.getEvents (data) ->
+    res.jsonp data
+
+app.get '/menus', (req, res) ->
+  menus.getMenus (data) ->
     res.jsonp data
 
 app.listen app.get('port'), ->

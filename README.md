@@ -60,6 +60,7 @@ $ curl --data "latitude=43.7050706&longitude=-72.2882575" http://timely-api.hero
 ```
 
 Get current campus events:
+
 ```bash
 $ curl http://timely-api.herokuapp.com/events
 [
@@ -102,6 +103,58 @@ $ curl http://timely-api.herokuapp.com/events
     "location": null
   }
 ]
+```
+
+Get current lunch menus:
+
+```bash
+$ curl http://timely-api.herokuapp.com/menus
+{
+  "foco": {
+    "Bakery/Dessert": [
+      "Cupcake Yellow Van Ice [d,e,sb,w]",
+      "Cranberry White Chunk Cookie (L/O) [d,e,sb,w]"
+    ],
+    "Entrées": [
+      "Cod Herb Crusted (K) [f,sb,w]",
+      "Chicken Enchilada Casserole [d,w]",
+      "Batter Fried Fish",
+      "Thai Curry Samosa (L/O) [e,sb,w]",
+      "Marinara Sauce (V,GF) [sb]",
+      "Pho Bo  Vietnamese Beef Noodle Soup [f,n,sb]",
+      "*Pho Ga [d,n,sb]",
+      "Vegetarian Pho(V,GF) [n,sb]",
+      "Broccoli Chicken Alfredo Pizza [d,sb,w]",
+      "Mushroom Pizza (L/O) [d,sb,w]",
+      "Roasted Vegetable Strmboli (L/O) [d,sb,w]"
+    ],
+    "Salad/Soup/Sandwich": [
+      "Corn and Black Bean Salsa (V)",
+      "Southwestern Turkey Salad [sb, e]",
+      "Pulled BBQ Pork &Onion Panini [d,pk,w]",
+      "Peanut Butter Surprise [d,n,p,sb,w]",
+      "Grilled Green Pepper (V, GF)",
+      "Homemade Peach Yogurt (L/O, GF) [d]",
+      "Deviled Ham Salad [pk,e,sb]",
+      "Turkey Gumbo [w]",
+      "Aztec Bean Chili w/ Grains(V, GF)",
+      "N.E. Clam Chowder  [d,f,sf,w]",
+      "Minestrone (L/O) [w]"
+    ],
+    "Side Dishes": [
+      "Apple Kugel (L/O,K) [e,w]",
+      "Whole Green Beans (V, GF, K)",
+      "Mexican Rice (V, GF)",
+      "Punjabi Cabbage (L/O, GF) [d]",
+      "Garlic Soba Noodles (L/O) [d, e, sb, w]",
+      "Grilled Green Pepper (V)",
+      "Multigrain Penne Pasta (V) [w]",
+      "Quinoa (V, GF)",
+      "Black Bean and Almond Salad (L/O, GF) [d,n]",
+      "Mini Bread Boule (V) [sb, w]"
+    ]
+  }
+}
 ```
 
   [express]: http://expressjs.com/
