@@ -56,6 +56,24 @@ getKafMenu = (fn) ->
       result['Drinks'].push $(e).text().toLowerCase().replace(/\s+$/, '')
     fn result
 
+getBolocoMenu = (fn) ->
+  request.get 'http://boloco.com/food/nutrition-calculator/', (err, response, body) ->
+    result = {}
+    $ = cheerio.load body
+    result['Burritos'] = []
+    $('select[name=burritotype] option').each (i, e) ->
+      if $(e).attr('value') != '---'
+        result['Burritos'].push $(e).text()
+    result['Smoothies and Shakes'] = []
+    $('select[name=smoothietype] option').each (i, e) ->
+      if $(e).attr('value') != '---'
+        result['Smoothies and Shakes'].push $(e).text()
+    result['Breakfast'] = []
+    $('select[name=othertype] option').each (i, e) ->
+      if $(e).attr('value') != '---'
+        result['Breakfast'].push $(e).text()
+    fn result
+
 module.exports =
   getMenus: (fn) ->
     result = {}
@@ -65,5 +83,7 @@ module.exports =
         result['hop'] = hop
         getKafMenu (kaf) ->
           result['kaf'] = kaf
-          fn result
+          getBolocoMenu (boloco) ->
+            result['boloco'] = boloco
+            fn result
 
