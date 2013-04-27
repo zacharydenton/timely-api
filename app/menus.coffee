@@ -1,14 +1,14 @@
 request = require 'request'
 cheerio = require 'cheerio'
 
-getFocoMenu = (fn) ->
+getDDSMenu = (id, sid, fn) ->
   today = new Date()
   opts =
     service: ""
     method: "get_recipes_for_menumealdate"
-    id: 36
+    id: id
     params: [
-      {"sid": "DDS.03cb6fca95f4cbea2245365827038394"},
+      {"sid": sid},
       JSON.stringify
         menu_id: 27,
         meal_id: 3,
@@ -34,6 +34,12 @@ getFocoMenu = (fn) ->
       result[recipe[1][0]].push recipe[0]
     fn result
 
+getFocoMenu = (fn) ->
+  getDDSMenu 36, "DDS.03cb6fca95f4cbea2245365827038394", fn
+
+getHopMenu = (fn) ->
+  getDDSMenu 42, "CYC.10fb74edf6476f66c3a71b8693c37103", fn
+
 getKafMenu = (fn) ->
   request.get 'http://www.kingarthurflour.com/visit/cafe-menu.html', (err, response, body) ->
     result = {}
@@ -55,7 +61,9 @@ module.exports =
     result = {}
     getFocoMenu (foco) ->
       result['foco'] = foco
-      getKafMenu (kaf) ->
-        result['kaf'] = kaf
-        fn result
+      getHopMenu (hop) ->
+        result['hop'] = hop
+        getKafMenu (kaf) ->
+          result['kaf'] = kaf
+          fn result
 
