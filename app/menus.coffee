@@ -1,4 +1,5 @@
 request = require 'request'
+cheerio = require 'cheerio'
 
 getFocoMenu = (fn) ->
   today = new Date()
@@ -33,7 +34,28 @@ getFocoMenu = (fn) ->
       result[recipe[1][0]].push recipe[0]
     fn result
 
+getKafMenu = (fn) ->
+  request.get 'http://www.kingarthurflour.com/visit/cafe-menu.html', (err, response, body) ->
+    result = {}
+    $ = cheerio.load body
+    $('.cafe-price').remove()
+    result['Sandwiches'] = []
+    $('#sandwiches').next().next().next().find('dt').each (i, e) ->
+      result['Sandwiches'].push $(e).text().toLowerCase().replace(/\s+$/, '')
+    result['Salads'] = []
+    $('#salads').next().next().next().find('dt').each (i, e) ->
+      result['Salads'].push $(e).text().toLowerCase().replace(/\s+$/, '')
+    result['Drinks'] = []
+    $('.cafe-drinks td b').each (i, e) ->
+      result['Drinks'].push $(e).text().toLowerCase().replace(/\s+$/, '')
+    fn result
+
 module.exports =
   getMenus: (fn) ->
+    result = {}
     getFocoMenu (foco) ->
-      fn foco: foco
+      result['foco'] = foco
+      getKafMenu (kaf) ->
+        result['kaf'] = kaf
+        fn result
+
