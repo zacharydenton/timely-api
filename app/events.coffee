@@ -75,7 +75,7 @@ module.exports =
       .pipe new FeedParser()
       .on 'article', (article) ->
         date = getDate article
-        if date
+        if date? and date.start.date() > new Date()
           events.push
             title: article.title
             description: article.description

@@ -3,6 +3,13 @@ cheerio = require 'cheerio'
 
 getDDSMenu = (id, sid, fn) ->
   today = new Date()
+  hour = today.getHours()
+  if hour < 11
+    meal = 1
+  else if hour < 4
+    meal = 3
+  else
+    meal = 5
   opts =
     service: ""
     method: "get_recipes_for_menumealdate"
@@ -11,7 +18,7 @@ getDDSMenu = (id, sid, fn) ->
       {"sid": sid},
       JSON.stringify
         menu_id: 27,
-        meal_id: 3,
+        meal_id: meal,
         remoteProcedure: "get_recipes_for_menumealdate",
         day: today.getDate(),
         month: today.getMonth() + 1,
