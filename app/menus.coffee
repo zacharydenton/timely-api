@@ -1,3 +1,4 @@
+time = require('time')(Date)
 request = require 'request'
 cheerio = require 'cheerio'
 

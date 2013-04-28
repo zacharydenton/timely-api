@@ -1,8 +1,9 @@
+time = require('time')(Date)
 request = require 'request'
 chrono = require 'chrono-node'
 FeedParser = require 'feedparser'
 
-getLocation = (article) ->
+getLocation = (text) ->
   buildingToLatLng =
     'collis':
       lat: 43.702688
@@ -26,6 +27,9 @@ getLocation = (article) ->
       lat: 43.701773
       lon: -72.287869
     'hop':
+      lat: 43.701754
+      lon: -72.288363
+    'hopkins':
       lat: 43.701754
       lon: -72.288363
     'tuck':
@@ -55,9 +59,15 @@ getLocation = (article) ->
     'kaf':
       lat: 43.705149
       lon: -72.288557
+    'inn':
+      lat: 43.70223
+      lon: -72.289068
+    'wheelock':
+      lat: 43.702688
+      lon: -72.289865
 
   location = null
-  for word in (word.toLowerCase() for word in article.description.replace(/(<([^>]+)>)/ig, ' ').split(/\W/))
+  for word in (word.toLowerCase() for word in text.replace(/(<([^>]+)>)/ig, ' ').split(/\W/))
     if buildingToLatLng[word]?
       location = buildingToLatLng[word]
       break
@@ -75,12 +85,14 @@ module.exports =
       .pipe new FeedParser()
       .on 'article', (article) ->
         date = getDate article
-        if date? and date.start.date() > new Date()
+        today = new Date()
+        today.setTimezone("America/New_York")
+        if date? and date.start.date() > today
           events.push
             title: article.title
             description: article.description
             date: date
             url: article.link
-            location: getLocation article
+            location: getLocation(article.title) or getLocation(article.description)
       .on 'end', ->
         fn events
