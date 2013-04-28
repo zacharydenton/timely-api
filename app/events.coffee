@@ -1,4 +1,5 @@
 time = require('time')(Date)
+cache = require 'memory-cache'
 request = require 'request'
 chrono = require 'chrono-node'
 FeedParser = require 'feedparser'
@@ -80,6 +81,10 @@ getDate = (article) ->
 
 module.exports =
   getEvents: (fn) ->
+    events = cache.get 'events'
+    if events?
+      fn events
+      return
     events = []
     request.get("http://listserv.dartmouth.edu/scripts/wa.exe?RSS&L=CAMPUS-EVENTS&v=ATOM1.0")
       .pipe new FeedParser()
@@ -94,4 +99,6 @@ module.exports =
             url: article.link
             location: getLocation(article.title) or getLocation(article.description)
       .on 'end', ->
+        cache.put 'events', events, 1000 * 60 * 240
         fn events
+

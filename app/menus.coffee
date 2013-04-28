@@ -1,4 +1,5 @@
 time = require('time')(Date)
+cache = require 'memory-cache'
 request = require 'request'
 cheerio = require 'cheerio'
 
@@ -84,6 +85,10 @@ getBolocoMenu = (fn) ->
 
 module.exports =
   getMenus: (fn) ->
+    result = cache.get 'menus'
+    if result?
+      fn result
+      return
     result = {}
     getFocoMenu (foco) ->
       result['foco'] = foco
@@ -93,5 +98,6 @@ module.exports =
           result['kaf'] = kaf
           getBolocoMenu (boloco) ->
             result['boloco'] = boloco
+            cache.put 'menus', result, 1000 * 60 * 120
             fn result
 

@@ -10,7 +10,8 @@
 		"feedparser": "0.15",
 		"chrono-node": "0.0.3",
 		"cheerio": "0.10",
-		"time": "0.9"
+		"time": "0.9",
+		"memory-cache": "0.0.x"
 	},
 	"engines": {
 		"node": "0.10.x",
