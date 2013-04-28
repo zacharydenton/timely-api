@@ -85,8 +85,7 @@ module.exports =
       .pipe new FeedParser()
       .on 'article', (article) ->
         date = getDate article
-        today = new Date()
-        today.setTimezone("America/New_York")
+        today = new Date().setTimezone("America/New_York")
         if date? and date.start.date() > today
           events.push
             title: article.title

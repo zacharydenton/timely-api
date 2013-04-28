@@ -3,11 +3,11 @@ request = require 'request'
 cheerio = require 'cheerio'
 
 getDDSMenu = (id, sid, fn) ->
-  today = new Date()
+  today = new Date().setTimezone("America/New_York")
   hour = today.getHours()
-  if hour < 11
+  if 3 < hour < 11
     meal = 1
-  else if hour < 4
+  else if hour < 16
     meal = 3
   else
     meal = 5
